@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Mental Health Support</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+</head>
+<body>
+    <div class="background-pattern"></div>
+    <button id="theme-toggle" class="theme-toggle" title="Toggle dark/light mode">
+        <i class="fas fa-moon"></i>
+    </button>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                Detection App
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#tips">Tips</a></li>
+                <li><a href="#support">Support</a></li>
+                <li><a href="#privacy">Privacy</a></li>
+                <li><a href="{{ url_for('analyze') }}" class="nav-analyze-btn">Analyze Text</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content" data-aos="fade-down">
+            <div class="animated-brain">
+                <lottie-player src="https://lottie.host/6e7e7b7d-2b7c-4b7e-8e7e-7b7e7b7e7b7e/brain.json" background="transparent" speed="1" style="width: 120px; height: 120px; margin: 0 auto;" loop autoplay></lottie-player>
+            </div>
+            <h1>Mental Health Safety and Depression Detection</h1>
+            <p class="hero-description">
+                We're here to support your mental well-being with advanced AI analysis and personalized guidance. 
+                You're not alone in this journey. 💙
+            </p>
+            <div class="quote-of-the-day" id="quote-of-the-day"></div>
+            <div class="hero-buttons">
+                <a href="{{ url_for('analyze') }}" class="cta-button">
+                    <i class="fas fa-search"></i>
+                    Start Analysis
+                </a>
+                <a href="#about" class="secondary-button">
+                    <i class="fas fa-info-circle"></i>
+                    Learn More
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2><i class="fas fa-info-circle"></i> About Our Project</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>MindCheck AI uses advanced machine learning to analyze text and provide insights about mental health patterns. Our goal is to offer support and guidance while maintaining the highest standards of privacy and care.</p>
+                    <div class="features">
+                        <div class="feature">
+                            <i class="fas fa-shield-alt"></i>
+                            <h3>Privacy First</h3>
+                            <p>Your data is never stored or shared</p>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-robot"></i>
+                            <h3>AI Powered</h3>
+                            <p>Advanced analysis for accurate insights</p>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-heart"></i>
+                            <h3>Supportive</h3>
+                            <p>Personalized tips and guidance</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Depression Tips Section -->
+    <section id="tips" class="section">
+        <div class="container">
+            <h2><i class="fas fa-lightbulb"></i> Depression Tips & Support</h2>
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <i class="fas fa-phone"></i>
+                    <h3>Professional Help</h3>
+                    <p>Reach out to mental health professionals or counselors for support</p>
+                </div>
+                <div class="tip-card">
+                    <i class="fas fa-sun"></i>
+                    <h3>Daily Routine</h3>
+                    <p>Maintain regular sleep schedule and get sunlight daily</p>
+                </div>
+                <div class="tip-card">
+                    <i class="fas fa-running"></i>
+                    <h3>Physical Activity</h3>
+                    <p>Engage in light exercise like walking or gentle workouts</p>
+                </div>
+                <div class="tip-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Social Connection</h3>
+                    <p>Talk to trusted friends and family about your feelings</p>
+                </div>
+                <div class="tip-card">
+                    <i class="fas fa-book"></i>
+                    <h3>Journaling</h3>
+                    <p>Keep a journal to express thoughts and track your mood</p>
+                </div>
+                <div class="tip-card">
+                    <i class="fas fa-music"></i>
+                    <h3>Self-Care</h3>
+                    <p>Listen to calming music or do activities you enjoy</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Support System Section -->
+    <section id="support" class="section">
+        <div class="container">
+            <h2><i class="fas fa-hands-helping"></i> Support System</h2>
+            <div class="support-content">
+                <div class="support-card">
+                    <h3>Emergency Support</h3>
+                    <p>If you're in crisis, please contact:</p>
+                    <ul>
+                        <li><strong>Emergency Services:</strong> 911</li>
+                        <li><strong>National Suicide Prevention Lifeline:</strong> 988</li>
+                        <li><strong>Crisis Text Line:</strong> Text HOME to 741741</li>
+                    </ul>
+                </div>
+                <div class="support-card">
+                    <h3>Professional Resources</h3>
+                    <p>Find professional help:</p>
+                    <ul>
+                        <li>Talk to your doctor or therapist</li>
+                        <li>Contact local mental health clinics</li>
+                        <li>Use online therapy platforms</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Privacy Section -->
+    <section id="privacy" class="section">
+        <div class="container">
+            <h2><i class="fas fa-lock"></i> Privacy & Security</h2>
+            <div class="privacy-content">
+                <div class="privacy-card">
+                    <h3>Your Privacy Matters</h3>
+                    <ul>
+                        <li>✅ Your text is analyzed in real-time and never stored</li>
+                        <li>✅ No personal information is collected</li>
+                        <li>✅ All analysis happens locally on our secure servers</li>
+                        <li>✅ We don't share your data with third parties</li>
+                        <li>✅ You can use the service anonymously</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p><i class="fas fa-info-circle"></i> This tool is for educational purposes and should not replace professional medical advice.</p>
+            <p>&copy; 2024 MindCheck AI. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init({ once: true });
+      // Typewriter greeting
+      const greetingText = "Welcome to MindCheck AI, your safe space for mental health support.";
+      let i = 0;
+      function typeWriter() {
+        if (i < greetingText.length) {
+          document.getElementById("typewriter-greeting").innerHTML += greetingText.charAt(i);
+          i++;
+          setTimeout(typeWriter, 35);
+        }
+      }
+      document.getElementById("typewriter-greeting").innerHTML = "";
+      typeWriter();
+      // Motivational quotes
+      const quotes = [
+        "You are stronger than you think.",
+        "Every day is a fresh start.",
+        "Your feelings are valid.",
+        "Small steps every day.",
+        "You matter. Your story matters.",
+        "Healing is not linear.",
+        "Be gentle with yourself.",
+        "You are not alone."
+      ];
+      document.getElementById("quote-of-the-day").innerText = '💡 ' + quotes[Math.floor(Math.random()*quotes.length)];
+      // Dark/Light mode toggle
+      const toggleBtn = document.getElementById('theme-toggle');
+      toggleBtn.onclick = function() {
+        document.body.classList.toggle('light-mode');
+        if(document.body.classList.contains('light-mode')) {
+          toggleBtn.innerHTML = '<i class="fas fa-sun"></i>';
+        } else {
+          toggleBtn.innerHTML = '<i class="fas fa-moon"></i>';
+        }
+      };
+    </script>
+</body>
+</html>
