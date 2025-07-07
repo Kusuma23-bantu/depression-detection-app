@@ -3,6 +3,7 @@ from transformers import DistilBertTokenizerFast, DistilBertForSequenceClassific
 from sklearn.model_selection import train_test_split
 import torch
 from datasets import Dataset
+from model.predict import predict_depression
 
 print("📥 Loading small dataset...")
 df = pd.read_csv("datasets/small_depression_dataset.csv")
