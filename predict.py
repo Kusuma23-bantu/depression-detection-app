@@ -1,8 +1,7 @@
 from transformers import DistilBertTokenizerFast, DistilBertForSequenceClassification
 import torch
-from pathlib import Path
 
-MODEL_PATH = Path("model/depression_model")
+MODEL_PATH = "Kusumabantu/depression-detector"  # ✅ Hugging Face model name
 
 tokenizer = DistilBertTokenizerFast.from_pretrained(MODEL_PATH)
 model = DistilBertForSequenceClassification.from_pretrained(MODEL_PATH)
