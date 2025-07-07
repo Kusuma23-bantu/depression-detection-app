@@ -1,191 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Text Analysis</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Text Analysis</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body>
-    <div class="background-pattern"></div>
-    <div id="confetti" class="confetti" style="display:none;"></div>
-    <div id="loading" class="loading-overlay" style="display:none;">
-        <div class="spinner"></div>
+  <div class="background-pattern"></div>
+  <div id="confetti" class="confetti" style="display:none;"></div>
+  <div id="loading" class="loading-overlay" style="display:none;">
+    <div class="spinner"></div>
+  </div>
+
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <i class="fas fa-brain"></i>
+        <span>Depression Detection</span>
+      </div>
+      <ul class="nav-menu">
+        <li><a href="{{ url_for('index') }}">Home</a></li>
+        <li><a href="{{ url_for('index') }}#about">About</a></li>
+        <li><a href="{{ url_for('index') }}#tips">Tips</a></li>
+        <li><a href="{{ url_for('index') }}#support">Support</a></li>
+        <li><a href="{{ url_for('index') }}#privacy">Privacy</a></li>
+        <li><a href="{{ url_for('analyze') }}" class="nav-analyze-btn active">Analyze Text</a></li>
+      </ul>
     </div>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <i class="fas fa-brain"></i>
-                <span>Depression Detection</span>
-            </div>
-            <ul class="nav-menu">
-                <li><a href="{{ url_for('index') }}">Home</a></li>
-                <li><a href="{{ url_for('index') }}#about">About</a></li>
-                <li><a href="{{ url_for('index') }}#tips">Tips</a></li>
-                <li><a href="{{ url_for('index') }}#support">Support</a></li>
-                <li><a href="{{ url_for('index') }}#privacy">Privacy</a></li>
-                <li><a href="{{ url_for('analyze') }}" class="nav-analyze-btn active">Analyze Text</a></li>
-            </ul>
-        </div>
-    </nav>
+  </nav>
 
-    <div class="main-container">
-        <header class="header" data-aos="fade-down">
-            <div class="logo">
-                <i class="fas fa-search"></i>
-                <h1>Text Analysis</h1>
-            </div>
-            <p class="subtitle">Share your thoughts and get AI-powered insights</p>
-        </header>
+  <div class="main-container">
+    <header class="header" data-aos="fade-down">
+      <div class="logo">
+        <i class="fas fa-search"></i>
+        <h1>Text Analysis</h1>
+      </div>
+      <p class="subtitle">Share your thoughts and get AI-powered insights</p>
+    </header>
 
-        <div class="content-wrapper">
-            <div class="left-panel" data-aos="fade-right">
-                <div class="info-card">
-                    <div class="info-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3>Privacy First</h3>
-                    <p>Your data is processed securely and never stored</p>
-                </div>
-                
-                <div class="info-card">
-                    <div class="info-icon">
-                        <i class="fas fa-robot"></i>
-                    </div>
-                    <h3>AI Powered</h3>
-                    <p>Advanced machine learning for accurate detection</p>
-                </div>
-                
-                <div class="info-card">
-                    <div class="info-icon">
-                        <i class="fas fa-heart"></i>
-                    </div>
-                    <h3>Supportive</h3>
-                    <p>Get personalized tips and guidance</p>
-                </div>
-            </div>
+    <div class="content-wrapper">
+      <div class="left-panel" data-aos="fade-right">
+        <div class="info-card"><i class="fas fa-shield-alt"></i><h3>Privacy First</h3><p>Your data is processed securely and never stored</p></div>
+        <div class="info-card"><i class="fas fa-robot"></i><h3>AI Powered</h3><p>Advanced machine learning for accurate detection</p></div>
+        <div class="info-card"><i class="fas fa-heart"></i><h3>Supportive</h3><p>Get personalized tips and guidance</p></div>
+      </div>
 
-            <div class="main-panel" data-aos="fade-up">
-                <div class="input-section">
-                    <div class="input-header">
-                        <i class="fas fa-edit"></i>
-                        <h2>Share Your Thoughts</h2>
-                    </div>
-                    <form method="POST" class="prediction-form" id="analyze-form">
-                        <div class="textarea-container">
-                            <textarea name="text" placeholder="Express your feelings, thoughts, or experiences here... Emojis are welcome! 😊😢😔" required></textarea>
-                            <div class="textarea-footer">
-                                <i class="fas fa-lock"></i>
-                                <span>Your privacy is protected</span>
-                            </div>
-                        </div>
-                        <div class="emoji-note">You can use emojis to better express your feelings! 😊😢😔</div>
-                        <button type="submit" class="predict-btn">
-                            <i class="fas fa-search"></i>
-                            Analyze Text
-                        </button>
-                    </form>
-                </div>
-
-                {% if result_data %}
-                <div class="result-section" data-aos="fade-in">
-                    <div class="result-card">
-                        <div class="analysis-header">
-                            <h3><i class="fas fa-chart-line"></i> Text Analysis Results</h3>
-                        </div>
-                        
-                        <div class="text-analysis">
-                            <div class="original-text">
-                                <h4><i class="fas fa-quote-left"></i> Your Text:</h4>
-                                <p>"{{ result_data.original_text }}"</p>
-                            </div>
-                        </div>
-                        
-                        <div class="result-header">
-                            <div class="result-icon {% if 'Depressed' in result_data.emotional_state or 'Sad' in result_data.emotional_state %}depressed{% else %}not-depressed{% endif %}">
-                                {% if "Depressed" in result_data.emotional_state or "Sad" in result_data.emotional_state %}
-                                    <i class="fas fa-cloud-rain"></i>
-                                {% else %}
-                                    <i class="fas fa-sun"></i>
-                                {% endif %}
-                            </div>
-                            <div class="result-text">
-                                <h2>{{ result_data.emotional_state }}</h2>
-                                <div class="severity-badge">
-                                    <span class="severity-{{ result_data.severity.lower() }}">{{ result_data.severity }} Severity</span>
-                                </div>
-                                <div class="confidence-line">Confidence: {{ result_data.confidence }}%</div>
-                            </div>
-                        </div>
-                        
-                        {% if result_data.tip %}
-                        <div class="tips-section">
-                            <div class="tips-header">
-                                <i class="fas fa-lightbulb"></i>
-                                <h3>Personalized Recommendations</h3>
-                            </div>
-                            <div class="tips-content">
-                                <p>{{ result_data.tip }}</p>
-                            </div>
-                        </div>
-                        {% endif %}
-                    </div>
-                </div>
-                {% endif %}
+      <div class="main-panel" data-aos="fade-up">
+        <div class="input-section">
+          <div class="input-header">
+            <i class="fas fa-edit"></i>
+            <h2>Share Your Thoughts</h2>
+          </div>
+          <form method="POST" class="prediction-form" id="analyze-form">
+            <div class="textarea-container">
+              <textarea name="user_text" placeholder="Express your feelings, thoughts, or experiences here... Emojis are welcome! 😊😢😔" required></textarea>
+              <div class="textarea-footer">
+                <i class="fas fa-lock"></i>
+                <span>Your privacy is protected</span>
+              </div>
             </div>
+            <div class="emoji-note">You can use emojis to better express your feelings! 😊😢😔</div>
+            <button type="submit" class="predict-btn">
+              <i class="fas fa-search"></i> Analyze Text
+            </button>
+          </form>
         </div>
 
-        <footer class="footer">
-        </footer>
-    </div>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-      AOS.init({ once: true });
-      // Animate confidence bar
-      document.addEventListener('DOMContentLoaded', function() {
-        var fill = document.getElementById('confidence-fill');
         {% if result_data %}
-        setTimeout(function() {
-          if (fill) fill.style.width = '{{ result_data.confidence }}%';
-        }, 300);
+        <div class="result-section" data-aos="fade-in">
+          <div class="result-card">
+            <div class="analysis-header">
+              <h3><i class="fas fa-chart-line"></i> Text Analysis Results</h3>
+            </div>
+            <div class="text-analysis">
+              <div class="original-text">
+                <h4><i class="fas fa-quote-left"></i> Your Text:</h4>
+                <p>"{{ result_data.original_text }}"</p>
+              </div>
+            </div>
+            <div class="result-header">
+              <div class="result-icon {% if 'Depressed' in result_data.emotional_state or 'Sad' in result_data.emotional_state %}depressed{% else %}not-depressed{% endif %}">
+                {% if "Depressed" in result_data.emotional_state or "Sad" in result_data.emotional_state %}
+                  <i class="fas fa-cloud-rain"></i>
+                {% else %}
+                  <i class="fas fa-sun"></i>
+                {% endif %}
+              </div>
+              <div class="result-text">
+                <h2>{{ result_data.emotional_state }}</h2>
+                <div class="severity-badge">
+                  <span class="severity-{{ result_data.severity.lower() }}">{{ result_data.severity }} Severity</span>
+                </div>
+                <div class="confidence-line">Confidence: {{ result_data.confidence }}%</div>
+              </div>
+            </div>
+
+            {% if result_data.tip %}
+            <div class="tips-section">
+              <div class="tips-header"><i class="fas fa-lightbulb"></i><h3>Personalized Recommendations</h3></div>
+              <div class="tips-content"><p>{{ result_data.tip }}</p></div>
+            </div>
+            {% endif %}
+          </div>
+        </div>
         {% endif %}
-      });
-      // Show loading spinner on form submit
-      document.getElementById('analyze-form').addEventListener('submit', function() {
-        document.getElementById('loading').style.display = 'flex';
-      });
-      // Confetti for positive result
-      {% if result_data and ("Happy" in result_data.emotional_state or "Neutral" in result_data.emotional_state) %}
-      function confettiEffect() {
-        var confetti = document.getElementById('confetti');
-        confetti.style.display = 'block';
-        for (let i = 0; i < 80; i++) {
-          let div = document.createElement('div');
-          div.style.position = 'absolute';
-          div.style.left = Math.random()*100 + 'vw';
-          div.style.top = '-5vh';
-          div.style.width = '10px';
-          div.style.height = '10px';
-          div.style.background = ['#DFB6B2','#854F6C','#FBE4D8','#522B5B'][Math.floor(Math.random()*4)];
-          div.style.borderRadius = '50%';
-          div.style.opacity = 0.8;
-          div.style.transform = 'scale(' + (0.7 + Math.random()*0.6) + ')';
-          div.style.transition = 'top 2.2s cubic-bezier(.4,2,.6,1), left 2.2s cubic-bezier(.4,2,.6,1)';
-          confetti.appendChild(div);
-          setTimeout(() => {
-            div.style.top = (90 + Math.random()*10) + 'vh';
-            div.style.left = (Math.random()*100) + 'vw';
-          }, 10);
-          setTimeout(() => { div.remove(); }, 2300);
-        }
-        setTimeout(() => { confetti.style.display = 'none'; }, 2400);
-      }
-      setTimeout(confettiEffect, 600);
+      </div>
+    </div>
+
+    <footer class="footer"></footer>
+  </div>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ once: true });
+
+    document.addEventListener('DOMContentLoaded', function () {
+      var fill = document.getElementById('confidence-fill');
+      {% if result_data %}
+      setTimeout(function () {
+        if (fill) fill.style.width = '{{ result_data.confidence }}%';
+      }, 300);
       {% endif %}
-    </script>
+    });
+
+    document.getElementById('analyze-form').addEventListener('submit', function () {
+      document.getElementById('loading').style.display = 'flex';
+    });
+
+    {% if result_data and ("Happy" in result_data.emotional_state or "Neutral" in result_data.emotional_state) %}
+    function confettiEffect() {
+      var confetti = document.getElementById('confetti');
+      confetti.style.display = 'block';
+      for (let i = 0; i < 80; i++) {
+        let div = document.createElement('div');
+        div.style.position = 'absolute';
+        div.style.left = Math.random() * 100 + 'vw';
+        div.style.top = '-5vh';
+        div.style.width = '10px';
+        div.style.height = '10px';
+        div.style.background = ['#DFB6B2','#854F6C','#FBE4D8','#522B5B'][Math.floor(Math.random() * 4)];
+        div.style.borderRadius = '50%';
+        div.style.opacity = 0.8;
+        div.style.transform = 'scale(' + (0.7 + Math.random() * 0.6) + ')';
+        div.style.transition = 'top 2.2s cubic-bezier(.4,2,.6,1), left 2.2s cubic-bezier(.4,2,.6,1)';
+        confetti.appendChild(div);
+        setTimeout(() => { div.style.top = (90 + Math.random() * 10) + 'vh'; div.style.left = (Math.random() * 100) + 'vw'; }, 10);
+        setTimeout(() => { div.remove(); }, 2300);
+      }
+      setTimeout(() => { confetti.style.display = 'none'; }, 2400);
+    }
+    setTimeout(confettiEffect, 600);
+    {% endif %}
+  </script>
 </body>
-</html> 
+</html>
