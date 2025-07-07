@@ -3,23 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Mental Health Support</title>
+    <title>🧠 MindCheck AI - Mental Health Support</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
 <body>
     <div class="background-pattern"></div>
-    <button id="theme-toggle" class="theme-toggle" title="Toggle dark/light mode">
-        <i class="fas fa-moon"></i>
-    </button>
+    
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                Detection App
+                <i class="fas fa-brain"></i>
+                <span>Depression Detection</span>
             </div>
             <ul class="nav-menu">
                 <li><a href="#home">Home</a></li>
@@ -27,25 +24,22 @@
                 <li><a href="#tips">Tips</a></li>
                 <li><a href="#support">Support</a></li>
                 <li><a href="#privacy">Privacy</a></li>
-                <li><a href="{{ url_for('analyze') }}" class="nav-analyze-btn">Analyze Text</a></li>
+                <li><a href="{{ url_for('index') }}" class="nav-analyze-btn">Analyze Text</a></li>
             </ul>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <div class="hero-content" data-aos="fade-down">
-            <div class="animated-brain">
-                <lottie-player src="https://lottie.host/6e7e7b7d-2b7c-4b7e-8e7e-7b7e7b7e7b7e/brain.json" background="transparent" speed="1" style="width: 120px; height: 120px; margin: 0 auto;" loop autoplay></lottie-player>
-            </div>
-            <h1>Mental Health Safety and Depression Detection</h1>
+        <div class="hero-content">
+            <h1>MENTAL HEALTH DETECTION</h1>
+            <p class="hero-subtitle">Your AI-powered mental health companion</p>
             <p class="hero-description">
                 We're here to support your mental well-being with advanced AI analysis and personalized guidance. 
                 You're not alone in this journey. 💙
             </p>
-            <div class="quote-of-the-day" id="quote-of-the-day"></div>
             <div class="hero-buttons">
-                <a href="{{ url_for('analyze') }}" class="cta-button">
+                <a href="{{ url_for('index') }}" class="cta-button">
                     <i class="fas fa-search"></i>
                     Start Analysis
                 </a>
@@ -72,7 +66,6 @@
                         </div>
                         <div class="feature">
                             <i class="fas fa-robot"></i>
-                            <h3>AI Powered</h3>
                             <p>Advanced analysis for accurate insights</p>
                         </div>
                         <div class="feature">
@@ -178,43 +171,5 @@
             <p>&copy; 2024 MindCheck AI. All rights reserved.</p>
         </div>
     </footer>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-      AOS.init({ once: true });
-      // Typewriter greeting
-      const greetingText = "Welcome to MindCheck AI, your safe space for mental health support.";
-      let i = 0;
-      function typeWriter() {
-        if (i < greetingText.length) {
-          document.getElementById("typewriter-greeting").innerHTML += greetingText.charAt(i);
-          i++;
-          setTimeout(typeWriter, 35);
-        }
-      }
-      document.getElementById("typewriter-greeting").innerHTML = "";
-      typeWriter();
-      // Motivational quotes
-      const quotes = [
-        "You are stronger than you think.",
-        "Every day is a fresh start.",
-        "Your feelings are valid.",
-        "Small steps every day.",
-        "You matter. Your story matters.",
-        "Healing is not linear.",
-        "Be gentle with yourself.",
-        "You are not alone."
-      ];
-      document.getElementById("quote-of-the-day").innerText = '💡 ' + quotes[Math.floor(Math.random()*quotes.length)];
-      // Dark/Light mode toggle
-      const toggleBtn = document.getElementById('theme-toggle');
-      toggleBtn.onclick = function() {
-        document.body.classList.toggle('light-mode');
-        if(document.body.classList.contains('light-mode')) {
-          toggleBtn.innerHTML = '<i class="fas fa-sun"></i>';
-        } else {
-          toggleBtn.innerHTML = '<i class="fas fa-moon"></i>';
-        }
-      };
-    </script>
 </body>
 </html>
