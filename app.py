@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from predict import predict_depression
+from model.predict import predict_depression
  # ✅ using enhanced logic
 
 app = Flask(__name__)
