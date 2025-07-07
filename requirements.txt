@@ -1,0 +1,5 @@
+flask
+transformers
+torch
+gunicorn
+jinja2
