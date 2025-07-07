@@ -11,8 +11,17 @@ def predict_depression(text):
     inputs = tokenizer(text, return_tensors="pt", truncation=True, padding=True)
     with torch.no_grad():
         outputs = model(**inputs)
-    logits = outputs.logits[0].numpy()
-    probs = softmax(logits)
-    label = "Depressed" if probs[1] > probs[0] else "Not Depressed"
-    confidence = round(max(probs) * 100, 2)
-    return label, confidence
+        logits = outputs.logits
+        probs = torch.softmax(logits, dim=1)
+        predicted_class = torch.argmax(probs, dim=1).item()
+        confidence = torch.max(probs).item()
+    # Simple mapping
+    if predicted_class == 1:
+        result = "Depressed"
+    else:
+        result = "Not Depressed"
+    return {
+        'result': result,
+        'confidence': round(confidence * 100, 2),
+        'original_text': text
+    }
