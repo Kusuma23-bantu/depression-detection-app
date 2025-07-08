@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 from predict import predict_depression
- # ✅ using enhanced logic
+import os
 
 app = Flask(__name__)
 
@@ -20,4 +20,5 @@ def analyze():
     return render_template("analyze.html", result_data=result_data)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))  # ✅ render binds port dynamically
+    app.run(debug=True, host="0.0.0.0", port=port)
